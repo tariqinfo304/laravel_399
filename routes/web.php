@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 // routes LEcture # 12 //
 //////////////////////////
 
-Route::get('/welcome', function () { echo "Welcome"; });
+Route::get('/', function () { echo "Welcome"; });
 
 /*
 Route::get('/show_user', function () { echo "EVS Students"; });
@@ -145,12 +145,13 @@ Route::resource("student",StudentController::class);
 Route::resource("teacher",TeacherController::class);
 */
 
+/*
 Route::resources([
 	"student" => StudentController::class,
 	"teacher" => TeacherController::class
 ]);
 
-
+*/
 
 
 ///////
@@ -175,7 +176,28 @@ Route::resource('student', StudentController::class)->except([
 //Naming Resource Routes
 ///////////////////
 
+/*
 Route::resource('student', StudentController::class)->names([
     'create' => 'student.build'
 ]);
+*/
+
+
+
+Route::resource('student.comments', StudentController::class)->parameters([
+    'student' => 'admin_user'
+]);
+
+
+
+use App\Http\Controllers\RequestController;
+
+Route::get('req/{id}',[RequestController::class,"index"]);
+
+
+
+Route::get('view',[RequestController::class,"send_data_to_view"]);
+
+
+Route::get('blade_1',[RequestController::class,"send_data_to_view"]);
 
