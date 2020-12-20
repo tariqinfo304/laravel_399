@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 // routes LEcture # 12 //
 //////////////////////////
 
-Route::get('/', function () { echo "Welcome"; });
+Route::get('/', function () { echo "First Laravel Class"; });
 
-/*
+
 Route::get('/show_user', function () { echo "EVS Students"; });
 
 Route::match(['get','put', 'post'], '/multi', function () {
@@ -32,9 +32,12 @@ Route::any('/any',function(){
 });
 
 
+
 //Route::redirect('/any', 'multi');
 
 //Route::permanentRedirect('/any', 'multi');
+
+
 
 
 /////////////////////////////
@@ -50,6 +53,7 @@ Route::get("/get_std_record/{id}/{name}",function($id_std,$name){
 
 	echo "Students Record : ".$id_std ."  & Name : " . $name;
 });
+
 
 //Optional Param //
 
@@ -76,6 +80,8 @@ Route::get("get/{id}/{name}",function($id,$name){
 
 })->where(["id" => "[0-9]{4}" , "name" => "[a-z]{2}[A-Z]+"]);
 
+//assigmnent like email,CNIC,RollNo. of your Univerysity,DOB
+
 
 
 //Global validation of param in App/Provider/RouteServiceProvider
@@ -91,30 +97,48 @@ Route::get("/search/{param}",function($param){
 		echo $param;
 })->where("param",".*");
 
+
 ////////////////////
 // Named Routes ///
 ////////////////////
 
 
 Route::get('user/profile/data', function () {
-    echo "Profile NAme";
+    echo "Profile Name";
 })->name('profile');
 
 
 Route::get("profile_url",function(){
 
 
-	return redirect()->route('profile');
+	//return redirect()->route('profile');
 
 	//$url = route('profile');
-	//echo $url;
+//	echo $url;
+	echo URL("user/profile/data");
 });		
 
-*/
+
 
 //////////////////////////
-/// Controller lect # 13
+/// Controller lect # 10
 /////////////////////////
+
+
+
+use App\Http\Controllers\HelloController;
+
+
+Route::get("hello",[HelloController::class,"hello"]);
+Route::get("param/{id}/{name}",
+		[HelloController::class,"hello_param"]);
+
+
+
+
+Route::get("req",[HelloController::class,"req"]);
+
+
 
 
 use App\Http\Controllers\WelcomeController;
@@ -128,6 +152,10 @@ Route::get('/get_student/{id}/{name}/{age?}',[WelcomeController::class,"get_stud
 /////////////////////////
 ////////Single Action Controllers //
 /////////////////////
+
+
+use App\Http\Controllers\HomeCallController;
+Route::get("/call/{name?}",HomeCallController::class);
 
 use App\Http\Controllers\SingleController;
 Route::get("/single/{name?}",SingleController::class);

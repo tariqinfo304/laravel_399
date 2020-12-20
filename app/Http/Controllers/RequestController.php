@@ -29,8 +29,14 @@ class RequestController extends Controller
 
 		//echo $req->input("username","dummy");
 		$req->whenHas('name', function ($input) {
-    		echo $input;
+    		
+
+            //echo $input;
+
 		});
+
+
+        echo $req->name;
     }
 
     function send_data_to_view()
