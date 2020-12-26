@@ -227,5 +227,6 @@ Route::get('req/{id}',[RequestController::class,"index"]);
 Route::get('view',[RequestController::class,"send_data_to_view"]);
 
 
-Route::get('blade_1',[RequestController::class,"send_data_to_view"]);
+Route::get('blade_1',[RequestController::class,"view_render"]);
+
 

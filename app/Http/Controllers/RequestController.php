@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class RequestController extends Controller
 {
@@ -45,11 +46,53 @@ class RequestController extends Controller
 
     	//return view("first",["name_full" => $name]);
 
-    	//return view("first")->with(["name_full"=>$name]);//->with("name","evs");
+        /*
+    	return view("first")
+                    ->with(["name_full"=>$name])
+                    ->with("name","evs")
+                    ->with("html_var","<button>Click Me</button>");
 
+        */
 
-    	$res = view("first")->with(["name_full"=>$name])->render();
+        /*
+        //save html in a variable 
+    	$res = view("first")
+                    ->with(["name_full"=>$name])
+                    ->with("name","evs")
+                    ->with("html_var","<button>Click Me</button>")->render();
 
     	echo $res;
+        */
+
+        //Nested View Directories
+
+
+
+       // return view("admin.list")->with("show","hi");
+
+      //  return view("admin.user.user_list")->with("user","hi");
+
+        //Creating The First Available View
+
+    //return View::first(['admin.user.list1', 'admin.list'])->with("show","hiii");
+
+        //Determining If A View Exists
+        /*
+        if(View::exists("admin.list"))
+        {
+            echo "yes";
+        }
+        else
+        {
+            echo "no";
+        }*/
+
+        return view("first",["name_full"=>"evs","name"=>"asd","html_var"=>"asd"]);
+    }
+
+
+    function view_render()
+    {
+        return view("blade_1",["name" => "evs"]);
     }
 }

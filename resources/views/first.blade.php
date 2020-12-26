@@ -8,9 +8,19 @@
 		{{-- $name_full --}}
 
 
+		<!-- <?php //echo $name_full; ?> -->
 		{{ $name_full }}
+		with
+		<p>{{ $name }}</p>
+		<hr/>
 
-		{{-- $name --}}
+		<!-- Way to rendar variable as html value rather than string -->
+		{!! $html_var !!}
 
+
+
+		<!-- Global Share View Data -->
+
+		{{ $global_data }}
 	</body>
 </html>
