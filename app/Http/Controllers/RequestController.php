@@ -93,6 +93,12 @@ class RequestController extends Controller
 
     function view_render()
     {
-        return view("blade_1",["name" => "evs"]);
+        $arr = [1,2,3,4,5];
+        return view("blade_1",[
+                "name" => "admin",
+                "arr" => $arr, 
+                "error_no" => 201,
+                "desc" => "Data not Found!"
+            ]);
     }
 }
