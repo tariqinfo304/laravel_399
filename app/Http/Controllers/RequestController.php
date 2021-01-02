@@ -101,4 +101,12 @@ class RequestController extends Controller
                 "desc" => "Data not Found!"
             ]);
     }
+
+
+    function layout()
+    {
+        
+    }
+
+
 }

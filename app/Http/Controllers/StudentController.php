@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
 
 class StudentController extends Controller
 {
@@ -13,7 +14,17 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $student = new Student();
+        //dd($student);
+
+       // dd(Student::all());
+
+        dd($student->all());
+        
+        /*
+        foreach (Student::all() as $flight) {
+            echo $flight->name;
+        }*/
     }
 
     /**
