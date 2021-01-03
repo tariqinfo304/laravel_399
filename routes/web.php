@@ -237,3 +237,6 @@ Route::get('blade_layout',[RequestController::class,"layout"]);
 Route::get('model',[StudentController::class,"index"]);
 
 
+Route::get('adv_model',[StudentController::class,"adv_select"]);
+
+
