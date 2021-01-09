@@ -103,10 +103,26 @@ class RequestController extends Controller
     }
 
 
-    function layout()
+    function adv_blade()
     {
-        
+        return view("test_blade");
+    }
+
+    function layout(Request $req)
+    {
+        $msg = "404 Error page not found!";
+        return view("layout.layout" , 
+            ["componentName" => $req->input("c") ?? "ads-slider"])
+        ->with("message",$msg);
     }
 
 
+    function layout_component()
+    {
+        return view("component_layout" , [
+
+                                    "title" => "Component Layout Title",
+                                    "arr" => [1,2,3,4,5,6]]
+                    );
+    }
 }

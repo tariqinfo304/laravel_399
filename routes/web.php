@@ -229,9 +229,6 @@ Route::get('view',[RequestController::class,"send_data_to_view"]);
 
 Route::get('blade_1',[RequestController::class,"view_render"]);
 
-//Pending Topic
-Route::get('blade_layout',[RequestController::class,"layout"]);
-
 
 //Eloquent Model
 Route::get('model',[StudentController::class,"index"]);
@@ -240,3 +237,14 @@ Route::get('model',[StudentController::class,"index"]);
 Route::get('adv_model',[StudentController::class,"adv_select"]);
 
 
+
+//Pending Topic
+Route::get('blade_layout',[RequestController::class,"layout"]);
+
+
+//Pending Topic
+Route::get('c_layout',[RequestController::class,"layout_component"]);
+
+
+
+Route::get("adv_blade",[RequestController::class,"adv_blade"]);
