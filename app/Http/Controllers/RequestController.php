@@ -125,4 +125,11 @@ class RequestController extends Controller
                                     "arr" => [1,2,3,4,5,6]]
                     );
     }
+
+
+    function layout_template()
+    {
+        //return view("layout._layout");
+        return view("child");
+    }
 }

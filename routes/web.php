@@ -238,13 +238,17 @@ Route::get('adv_model',[StudentController::class,"adv_select"]);
 
 
 
-//Pending Topic
 Route::get('blade_layout',[RequestController::class,"layout"]);
 
 
-//Pending Topic
-Route::get('c_layout',[RequestController::class,"layout_component"]);
-
-
-
 Route::get("adv_blade",[RequestController::class,"adv_blade"]);
+
+
+Route::get('template_layout',[RequestController::class,"layout_template"]);
+
+//Integrated HTML Template into Laravel Blade Template
+use App\Http\Controllers\WebsiteController;
+Route::get('website',[WebsiteController::class,"home"]);
+Route::get('product',[WebsiteController::class,"product_detail"]);
+Route::get('add_product',[WebsiteController::class,"add_product"]);
+
