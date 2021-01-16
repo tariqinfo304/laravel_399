@@ -1,6 +1,6 @@
 @extends("website.layout.layout")
 
-@section("title","Product Detail Page")
+@section("title","Add Product")
 
 @section("nav")
 @endsection
@@ -33,21 +33,76 @@
 			<!-- row -->
 			<div class="row">
 
-				<form>
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Email address</label>
-				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-				    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleInputPassword1">Password</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-				  </div>
-				  <div class="form-group form-check">
-				    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-				    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-				  </div>
-				  <button type="submit" class="btn btn-primary">Submit</button>
+				@if(!empty($obj->id))
+
+					<form method="POST" action="{{ URL('product/'.$obj->id) }}">
+
+				@else
+
+					<form method="POST" action="{{ URL('product') }}">
+
+				@endif
+
+					@csrf()
+
+
+					@if(!empty($is_deleted))
+
+						@method('DELETE')
+
+						@php
+							$disable="disabled"
+						@endphp
+
+					@endif
+
+					@if(!empty($obj->id) && empty($is_deleted))
+
+						@method('PUT')
+						<input type="hidden" value="{{ $obj->id }}" name="id"/>
+
+					@endif
+
+					 <div class="form-group">
+					    <label for="name">Product Name</label>
+					    <input type="text" class="form-control" name="name" aria-describedby="name"
+
+					    {{ $disable ?? "" }}
+					    value="{{ $obj->name ?? '' }}"
+					     placeholder="Enter Name">
+					  </div>
+					 <div class="form-group">
+					    <label for="price">Product Price</label>
+					    <input type="number" class="form-control" name="price" aria-describedby="name"
+
+					     {{ $disable ?? "" }}
+
+					    value="{{ $obj->price ?? '' }}"
+					     placeholder="Enter Price">
+					  </div>
+					  <div class="form-group">
+					    <label for="quantity">Product Quantity</label>
+					    <input type="number" class="form-control" name="quantity" aria-describedby="quantity"
+
+					     {{ $disable ?? "" }}
+					     
+					    value="{{ $obj->quantity ?? '' }}"
+					     placeholder="Enter Quantity">
+					  </div>
+
+					  @if(!empty($obj->id) && empty($is_deleted))
+
+					  	 <button type="submit" class="btn btn-primary">Update</button>
+					  @elseif(!empty($is_deleted))
+
+					  	 <button type="submit" class="btn btn-primary">Delete</button>
+
+					  @else
+
+					  		<button type="submit" class="btn btn-primary">Save</button>
+
+					  @endif
+					 
 				</form>
 
 			</div>

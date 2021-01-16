@@ -36,19 +36,19 @@
 				<div class="col-md-5 col-md-push-2">
 					<div id="product-main-img">
 						<div class="product-preview">
-							<img src="./img/product01.png" alt="">
+							<img src="{{ Asset('img/product01.png') }} " alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="./img/product03.png" alt="">
+							<img src="{{ Asset('img/product03.png') }}" alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="./img/product06.png" alt="">
+							<img src="{{ Asset('img/product06.png') }}" alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="./img/product08.png" alt="">
+							<img src="{{ Asset('img/product08.png') }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -58,19 +58,19 @@
 				<div class="col-md-2  col-md-pull-5">
 					<div id="product-imgs">
 						<div class="product-preview">
-							<img src="./img/product01.png" alt="">
+							<img src="{{ Asset('img/product01.png ') }}" alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="./img/product03.png" alt="">
+							<img src="{{ Asset('img/product03.png ') }}" alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="./img/product06.png" alt="">
+							<img src="{{ Asset('img/product06.png ') }}" alt="">
 						</div>
 
 						<div class="product-preview">
-							<img src="./img/product08.png" alt="">
+							<img src="{{ Asset('img/product08.png ') }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -79,7 +79,7 @@
 				<!-- Product details -->
 				<div class="col-md-5">
 					<div class="product-details">
-						<h2 class="product-name">product name goes here</h2>
+						<h2 class="product-name">{{ $obj->name ?? "" }}</h2>
 						<div>
 							<div class="product-rating">
 								<i class="fa fa-star"></i>
@@ -91,8 +91,8 @@
 							<a class="review-link" href="#">10 Review(s) | Add your review</a>
 						</div>
 						<div>
-							<h3 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h3>
-							<span class="product-available">In Stock</span>
+							<h3 class="product-price">{{ $obj->price ?? "" }} <del class="product-old-price">$990.00</del></h3>
+							<span class="product-available">In Stock ( {{ $obj->quantity ?? "" }} )</span>
 						</div>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 

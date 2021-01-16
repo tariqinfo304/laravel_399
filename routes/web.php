@@ -249,6 +249,12 @@ Route::get('template_layout',[RequestController::class,"layout_template"]);
 //Integrated HTML Template into Laravel Blade Template
 use App\Http\Controllers\WebsiteController;
 Route::get('website',[WebsiteController::class,"home"]);
-Route::get('product',[WebsiteController::class,"product_detail"]);
-Route::get('add_product',[WebsiteController::class,"add_product"]);
+
+//Route::get('product',[WebsiteController::class,"product_detail"]);
+//Route::get('add_product',[WebsiteController::class,"add_product"]);
+
+use App\Http\Controllers\ProductController;
+
+Route::get("product/{id}/delete",[ProductController::class,"delete_preview"]);
+Route::resource("product",ProductController::class);
 
