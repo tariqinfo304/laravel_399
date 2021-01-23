@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Models\Customer;
 
 class QueryBuilderController extends Controller
 {
@@ -71,6 +72,17 @@ class QueryBuilderController extends Controller
 
         //dd(DB::table("customers")->where("id",1)->get());
     }	
+
+
+    //pagination
+    function db_page()
+    {
+    	//$list = DB::table("customers")->paginate(5);
+    	//$list = DB::table("customers")->simplePaginate(5);
+
+    	$list = Customer::paginate(5);
+    	dd($list);
+    }
 
 
 }

@@ -266,3 +266,10 @@ Route::get("orm_advance",[ORMRelationController::class,"index"]);
 
 use App\Http\Controllers\QueryBuilderController;
 Route::get("db",[QueryBuilderController::class,"index"]);
+
+Route::get("db_page",[QueryBuilderController::class,"db_page"]);
+
+
+
+
+

@@ -53,6 +53,8 @@
 					@empty
 						<p>Data not Found</p>
 					@endforelse
+
+					{{ $listing->links() }}
 			</div>
 			<!-- /row -->
 		</div>

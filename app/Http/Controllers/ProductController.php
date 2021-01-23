@@ -19,9 +19,22 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        return view("website.product_listing")->with("listing",$this->model->all());
+
+        $total_page_size = 6;
+        
+        $listing = $this->model->paginate($total_page_size);
+
+        //offset
+        //  0 =  ( 1 * 6 ) - 6 
+        //  6 =  ( 2 * 6 ) - 6 
+
+      //  $listing = $this->model->skip(0)->take($total_page_size)->get();
+
+       //  $listing->withPath(URL('/website'));
+       // dd($listing);
+        return view("website.product_listing")->with("listing",$listing);
     }
 
     /**
