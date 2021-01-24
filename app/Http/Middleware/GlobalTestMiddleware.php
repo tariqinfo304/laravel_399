@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class TestMiddleware
+class GlobalTestMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,6 +16,7 @@ class TestMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+       // echo "Call";
        // die();
         return $next($request);
     }

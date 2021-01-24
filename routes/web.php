@@ -248,15 +248,26 @@ Route::get('template_layout',[RequestController::class,"layout_template"]);
 
 //Integrated HTML Template into Laravel Blade Template
 use App\Http\Controllers\WebsiteController;
-Route::get('website',[WebsiteController::class,"home"]);
+
+
+//Route::get('website',[WebsiteController::class,"home"])->middleware('test');
+			//->middleware(['test:student']);
+			//->middleware(['test','evs_group']);
 
 //Route::get('product',[WebsiteController::class,"product_detail"]);
 //Route::get('add_product',[WebsiteController::class,"add_product"]);
 
 use App\Http\Controllers\ProductController;
 
-Route::get("product/{id}/delete",[ProductController::class,"delete_preview"]);
-Route::resource("product",ProductController::class);
+/*
+Route::middleware(["evs_group"])->group(function () {
+
+	Route::get("product/{id}/delete",[ProductController::class,"delete_preview"]);
+	
+	Route::resource("product",ProductController::class);
+		//->withoutMiddleware("evs_group");
+});
+*/
 
 
 use App\Http\Controllers\ORMRelationController;
@@ -268,6 +279,25 @@ use App\Http\Controllers\QueryBuilderController;
 Route::get("db",[QueryBuilderController::class,"index"]);
 
 Route::get("db_page",[QueryBuilderController::class,"db_page"]);
+
+
+//Login Middleware
+
+use App\Http\Controllers\LoginController;
+
+Route::get("login",[LoginController::class,"login"]);
+Route::post("login",[LoginController::class,"do_login"]);
+Route::get("register",[LoginController::class,"create_user"]);
+Route::post("register",[LoginController::class,"add_user"]);
+
+Route::get("logout",[LoginController::class,"logout"]);
+
+Route::middleware(["login"])->group(function(){
+
+	Route::get('website',[WebsiteController::class,"home"]);
+	Route::get("product/{id}/delete",[ProductController::class,"delete_preview"]);
+	Route::resource("product",ProductController::class);
+});
 
 
 

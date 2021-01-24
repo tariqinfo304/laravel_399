@@ -52,6 +52,21 @@
 						<ul class="header-links pull-right">
 							<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
 							<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+							
+							@if(!empty(session('username')))
+
+								<li><a href="{{ URL('logout') }}"><i class="fa fa-user-o"></i> Logout</a></li>
+
+								<li><a href="#"><i class="fa fa-user-o"></i> {{ session('username')}}</a></li>
+
+							@else
+
+								<li><a href="{{ URL('login') }}"><i class="fa fa-user-o"></i> Login</a></li>
+
+							@endif
+						
+
+							
 						</ul>
 					</div>
 				</div>
