@@ -303,5 +303,12 @@ Route::middleware(["login"])->group(function(){
 
 
 
+//API with AJAX
+
+Route::get('api_call',[WebsiteController::class,"api_call"]);
+
+
+
+
 
 

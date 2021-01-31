@@ -34,6 +34,8 @@
 			  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 			  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 			<![endif]-->
+
+			<script src="{{ Asset('js/jquery.min.js')}} "></script>
 		@show
 
     </head>
@@ -81,7 +83,7 @@
 							<!-- LOGO -->
 							<div class="col-md-3">
 								<div class="header-logo">
-									<a href="#" class="logo">
+									<a href="{{ URL('website') }}" class="logo">
 										<img src="./img/logo.png" alt="">
 									</a>
 								</div>
@@ -195,6 +197,7 @@
 							<li><a href="#">Smartphones</a></li>
 							<li><a href="#">Cameras</a></li>
 							<li><a href="#">Accessories</a></li>
+							<li><a href="{{ URL('product') }}">Product</a></li>
 						</ul>
 						<!-- /NAV -->
 					</div>
@@ -313,7 +316,6 @@
 		@show
 
 		@section("js")
-			<script src="{{ Asset('js/jquery.min.js')}} "></script>
 			<script src="{{ Asset('js/bootstrap.min.js')}} "></script>
 			<script src="{{ Asset('js/slick.min.js')}} "></script>
 			<script src="{{ Asset('js/nouislider.min.js')}} "></script>

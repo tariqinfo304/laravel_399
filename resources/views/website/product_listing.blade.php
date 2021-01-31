@@ -15,10 +15,14 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="breadcrumb-tree">
-						<li><a href="#">Home</a></li>
-						<li class="active"><a href="#">Product Listing</a></li>
+						<li><a href="{{ URL('website') }}">Home</a></li>
+						<li class="active"><a href="{{ URL('product') }}">Product Listing</a></li>
+
+						
 					</ul>
 				</div>
+
+				<button style="float: right;" class="btn btn-primary"><a style="color: white" href="{{ URL('product/create') }}"> <i class="fa fa-plus"></i> Add Product</a></button>
 			</div>
 			<!-- /row -->
 		</div>
@@ -33,26 +37,46 @@
 			<!-- row -->
 			<div class="row">
 
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Image</th>
+								<th>Name</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+						
 					@forelse($listing as $row)
 
-						<div class="col-md-4">
-							<div class="product-widget">
-								<div class="product-img">
-									<img src="./img/product03.png" alt="">
-								</div>
-								<div class="product-body">
-									<p class="product-category">{{ $row->name }}</p>
-									<h3 class="product-name">
-										<a href="#" tabindex="0">{{ $row->name }}</a>
-									</h3>
-									<h4 class="product-price">{{ $row->price }} <span class="product-price">({{ $row->quantity }})</span></h4>
-								</div>
-							</div>
-						</div>
+						<tr>
+							<td><img height="50px" width="50px" src="./img/product03.png" alt=""></td>
+							<td>{{ $row->name }}</td>
+							<td>{{ $row->price }}</td>
+							<td>{{ $row->quantity }}</td>
+							<td>
+								@php 
+
+									$edit = "product/$row->id/edit";
+									$delete = "product/$row->id/delete";
+
+
+								 @endphp
+								<a href="{{ URL($edit) }}"><i class="fa fa-edit"></i></a>
+								<a href="{{ URL($delete) }}">
+									<i class="fa fa-remove"></i></a>
+							</td>
+						</tr>
 
 					@empty
 						<p>Data not Found</p>
 					@endforelse
+
+					</tbody>
+					</table>
 
 					{{ $listing->links() }}
 			</div>
@@ -62,5 +86,28 @@
 	</div>
 	<!-- /SECTION -->
 
+
+	<script type="text/javascript">
+		
+
+
+		/*
+		$.ajax({
+			
+		  	method: "GET",
+		  	url: "{{ URL('get_data') }}",
+		  	//data: { name: "John", location: "Boston" }
+		}).done(function( msg ) {
+
+			alert("Success");
+		    console.log(msg);
+
+		}).fail(function( jqXHR, textStatus, errorThrown){
+
+			console.log(jqXHR);
+		});
+		*/
+
+	</script>
 
 @endsection

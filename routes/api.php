@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+*/
+
+use App\Http\Controllers\WebsiteController;
+
+//Route::middleware(["api"])->group(function () {
+
+Route::get('get_data',[WebsiteController::class,"get_data"]);
+
+//});
+
+

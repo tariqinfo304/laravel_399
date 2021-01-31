@@ -33,13 +33,14 @@
 			<!-- row -->
 			<div class="row">
 
+				<p id="msg"></p>
 				@if(!empty($obj->id))
 
 					<form method="POST" action="{{ URL('product/'.$obj->id) }}">
 
 				@else
 
-					<form method="POST" action="{{ URL('product') }}">
+					<form id="add_product" method="POST" action="{{ URL('product') }}">
 
 				@endif
 
@@ -70,6 +71,13 @@
 					    {{ $disable ?? "" }}
 					    value="{{ $obj->name ?? '' }}"
 					     placeholder="Enter Name">
+
+					     @error("name")
+
+					     	<p class="alert alert-danger"> {{ $message }}</p>
+					     @enderror
+
+					     <p id="name_error"></p>
 					  </div>
 					 <div class="form-group">
 					    <label for="price">Product Price</label>
@@ -79,6 +87,11 @@
 
 					    value="{{ $obj->price ?? '' }}"
 					     placeholder="Enter Price">
+
+					    @error("price")
+
+					     	<p class="alert alert-danger"> {{ $message }}</p>
+					     @enderror
 					  </div>
 					  <div class="form-group">
 					    <label for="quantity">Product Quantity</label>
@@ -88,6 +101,12 @@
 					     
 					    value="{{ $obj->quantity ?? '' }}"
 					     placeholder="Enter Quantity">
+
+
+					     @error("quantity")
+
+					     	<p class="alert alert-danger"> {{ $message }}</p>
+					     @enderror
 					  </div>
 
 					  @if(!empty($obj->id) && empty($is_deleted))
@@ -113,4 +132,62 @@
 	<!-- /SECTION -->
 
 
+	<script type="text/javascript">
+		
+
+		$("#add_product").submit(function(e){
+
+			e.preventDefault();
+			
+			let form = $(this).serialize();
+			$.ajax({
+			
+			  	method: "POST",
+			  	url: "{{ URL('product') }}",
+			  	data: form
+			}).done(function( msg ) {
+
+				//alert("Success");
+			    //console.log(msg);
+
+			    $("#msg").text(msg);
+			    $("#msg").css("color","green");
+
+
+			    setTimeout(function(){
+
+			    	location.href="{{ URL('product') }}";
+			    },1000);
+
+			    
+
+			}).fail(function( jqXHR, textStatus, errorThrown){
+
+				let msg = JSON.parse(jqXHR.responseText);
+			
+				//console.log(msg.errors);
+
+				$("#name_error").text(msg.errors.name);
+				//jqXHR = JSON.parse(jqXHR);
+				//console.log(jqXHR);
+			});
+		});
+		/*
+		$.ajax({
+			
+		  	method: "GET",
+		  	url: "{{ URL('get_data') }}",
+		  	//data: { name: "John", location: "Boston" }
+		}).done(function( msg ) {
+
+			alert("Success");
+		    console.log(msg);
+
+		}).fail(function( jqXHR, textStatus, errorThrown){
+
+			console.log(jqXHR);
+		});*/
+
+
+	</script>
 @endsection

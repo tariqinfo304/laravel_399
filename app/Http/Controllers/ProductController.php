@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index(Request $req)
     {
 
-        $total_page_size = 6;
+        $total_page_size = 10;
         
         $listing = $this->model->paginate($total_page_size);
 
@@ -55,6 +55,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            
+            "name" => "required",
+            "price" => "required",
+            "quantity" => "required"
+
+        ]);
+
        // dd($request->all());
         $this->model->name = $request->input("name");
         $this->model->price = $request->input("price");
@@ -63,6 +72,7 @@ class ProductController extends Controller
         $is_save = $this->model->save();
         if($is_save)
         {
+            //return  redirect("product");
             echo "Record successfully added";
         }
         else
@@ -111,6 +121,7 @@ class ProductController extends Controller
         $is_updated = $obj->save();
         if($is_updated)
         {
+           return  redirect("product");
             echo "Your record updated successfully";
         }
         else
@@ -135,6 +146,7 @@ class ProductController extends Controller
             $is_deleted = $obj->delete();
             if($is_deleted)
             {
+                return  redirect("product");
                 echo "Deleted successfully";
             }
             else
