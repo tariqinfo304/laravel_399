@@ -22,10 +22,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 use App\Http\Controllers\WebsiteController;
 
-//Route::middleware(["api"])->group(function () {
 
-Route::get('get_data',[WebsiteController::class,"get_data"]);
+Route::get('login',[WebsiteController::class,"login"]);
 
-//});
+Route::middleware(["api_session"])->group(function () {
+
+	Route::get('get_data',[WebsiteController::class,"get_data"]);
+
+});
 
 

@@ -47,7 +47,9 @@ class Kernel extends HttpKernel
 
             \App\Http\Middleware\LoginMiddleware::class
         ],
-
+        "api_session" => [
+            \App\Http\Middleware\APISession::class
+        ],
         'api' => [
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,

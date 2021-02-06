@@ -290,13 +290,12 @@ Route::post("login",[LoginController::class,"do_login"]);
 Route::get("register",[LoginController::class,"create_user"]);
 Route::post("register",[LoginController::class,"add_user"]);
 
-Route::get("logout",[LoginController::class,"logout"]);
-
 Route::middleware(["login"])->group(function(){
 
 	Route::get('website',[WebsiteController::class,"home"]);
 	Route::get("product/{id}/delete",[ProductController::class,"delete_preview"]);
 	Route::resource("product",ProductController::class);
+	Route::get("logout",[LoginController::class,"logout"]);
 });
 
 
