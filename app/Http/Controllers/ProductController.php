@@ -60,14 +60,47 @@ class ProductController extends Controller
             
             "name" => "required",
             "price" => "required",
-            "quantity" => "required"
+            "quantity" => "required",
+            "product_image" => "required"
 
         ]);
 
-       // dd($request->all());
+
+        /*
+        //multiple files
+
+        foreach ($request->product_image as $row) {
+            
+            $row->store("multiple");
+        }
+
+        die();
+        */
+
+
+        //dd($request->all());
+
+        //dd($request->file("product_image"));
+
+       // dd($request->product_image);
+
+        /*if ($request->hasFile('product_image')) {
+            echo "Yes";
+        }*/
+
+        $path = "";
+
+        if ($request->file('product_image')->isValid()) {
+            //$path = $request->product_image->path();
+           // $extension = $request->product_image->extension();
+
+            $path = $request->product_image->store('modassir');
+        }
+
         $this->model->name = $request->input("name");
         $this->model->price = $request->input("price");
         $this->model->quantity = $request->input("quantity");
+        $this->model->image = $path;
 
         $is_save = $this->model->save();
         if($is_save)

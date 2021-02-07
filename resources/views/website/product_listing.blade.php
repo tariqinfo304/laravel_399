@@ -52,8 +52,17 @@
 						
 					@forelse($listing as $row)
 
-						<tr>
-							<td><img height="50px" width="50px" src="./img/product03.png" alt=""></td>
+						<tr>	
+
+							@if(!empty($row->image))
+
+								<td><img height="50px" width="50px" src="{{ Asset($row->image) }}" alt=""></td>
+							@else
+
+								<td><img height="50px" width="50px" src="./img/product03.png" alt=""></td>
+							@endif
+
+							
 							<td>{{ $row->name }}</td>
 							<td>{{ $row->price }}</td>
 							<td>{{ $row->quantity }}</td>

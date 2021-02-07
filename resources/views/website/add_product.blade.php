@@ -40,7 +40,7 @@
 
 				@else
 
-					<form id="add_product" method="POST" action="{{ URL('product') }}">
+					<form enctype="multipart/form-data" id="add_product" method="POST" action="{{ URL('product') }}">
 
 				@endif
 
@@ -117,8 +117,22 @@
 					  	 <button type="submit" class="btn btn-primary">Delete</button>
 
 					  @else
+					  	<div class="form-group">
+					    <label for="quantity">Product Image</label>
 
-					  		<button type="submit" class="btn btn-primary">Save</button>
+					    <input  type="file" class="form-control" 
+					  		name="product_image" />
+					  		<!--
+					  		<input multiple="" type="file" class="form-control" 
+					  		name="product_image[]" />
+					  	-->
+
+					  		@error("product_image")
+					  			<p class="alert alert-danger"> {{ $message }}</p>
+					  		@enderror
+					  	</div>
+					  	
+					  	<button type="submit" class="btn btn-primary">Save</button>
 
 					  @endif
 					 
@@ -135,6 +149,7 @@
 	<script type="text/javascript">
 		
 
+		/*
 		$("#add_product").submit(function(e){
 
 			e.preventDefault();
@@ -172,21 +187,7 @@
 				//console.log(jqXHR);
 			});
 		});
-		/*
-		$.ajax({
-			
-		  	method: "GET",
-		  	url: "{{ URL('get_data') }}",
-		  	//data: { name: "John", location: "Boston" }
-		}).done(function( msg ) {
-
-			alert("Success");
-		    console.log(msg);
-
-		}).fail(function( jqXHR, textStatus, errorThrown){
-
-			console.log(jqXHR);
-		});*/
+		*/
 
 
 	</script>
